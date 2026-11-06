@@ -1,0 +1,165 @@
+{
+  "threads": 16,
+  "torch": "2.12.0+cpu",
+  "device": "cpu",
+  "batch_note": "latency measured with torch.inference_mode, channels_last",
+  "protocol": "models measured in interleaved rounds; b1 50 samples/model, b128 25 samples/model; median reported",
+  "models": [
+    {
+      "model": "resnet20",
+      "label": "R20 (baseline)",
+      "params": 272474,
+      "macs": 40813184,
+      "flops": 81626368,
+      "params_m": 0.2725,
+      "macs_m": 40.8132,
+      "size_mb": 1.09,
+      "latency_b1": {
+        "batch_size": 1,
+        "samples": 50,
+        "latency_ms_mean": 2.2307179999916116,
+        "latency_ms_median": 1.954150000528898,
+        "latency_ms_p90": 3.3581100000446895,
+        "throughput_img_s": 448.2861571941233
+      },
+      "latency_b128": {
+        "batch_size": 128,
+        "samples": 25,
+        "latency_ms_mean": 31.611924000098952,
+        "latency_ms_median": 31.720099999802187,
+        "latency_ms_p90": 35.24611999928311,
+        "throughput_img_s": 4049.105014917767
+      }
+    },
+    {
+      "model": "resnet20_ds",
+      "label": "R20-DS",
+      "params": 40522,
+      "macs": 6654592,
+      "flops": 13309184,
+      "params_m": 0.0405,
+      "macs_m": 6.6546,
+      "size_mb": 0.162,
+      "latency_b1": {
+        "batch_size": 1,
+        "samples": 50,
+        "latency_ms_mean": 3.372591999832366,
+        "latency_ms_median": 3.0767499993089586,
+        "latency_ms_p90": 4.582459999801358,
+        "throughput_img_s": 296.5078491705207
+      },
+      "latency_b128": {
+        "batch_size": 128,
+        "samples": 25,
+        "latency_ms_mean": 21.403131999904872,
+        "latency_ms_median": 21.38100000047416,
+        "latency_ms_p90": 23.975100000097882,
+        "throughput_img_s": 5980.433144110352
+      }
+    },
+    {
+      "model": "resnet20_se",
+      "label": "R20-SE",
+      "params": 277082,
+      "macs": 40817408,
+      "flops": 81634816,
+      "params_m": 0.2771,
+      "macs_m": 40.8174,
+      "size_mb": 1.108,
+      "latency_b1": {
+        "batch_size": 1,
+        "samples": 50,
+        "latency_ms_mean": 3.0583999999362277,
+        "latency_ms_median": 2.9561999999714317,
+        "latency_ms_p90": 4.011679999712214,
+        "throughput_img_s": 326.96834947058966
+      },
+      "latency_b128": {
+        "batch_size": 128,
+        "samples": 25,
+        "latency_ms_mean": 38.35003599997435,
+        "latency_ms_median": 37.791200000356184,
+        "latency_ms_p90": 40.95562000002246,
+        "throughput_img_s": 3337.67613673389
+      }
+    },
+    {
+      "model": "resnet20_gelu",
+      "label": "R20-GELU",
+      "params": 272474,
+      "macs": 40813184,
+      "flops": 81626368,
+      "params_m": 0.2725,
+      "macs_m": 40.8132,
+      "size_mb": 1.09,
+      "latency_b1": {
+        "batch_size": 1,
+        "samples": 50,
+        "latency_ms_mean": 2.5718280000364757,
+        "latency_ms_median": 2.374200000303972,
+        "latency_ms_p90": 3.352990000166756,
+        "throughput_img_s": 388.8284908577935
+      },
+      "latency_b128": {
+        "batch_size": 128,
+        "samples": 25,
+        "latency_ms_mean": 38.37896400000318,
+        "latency_ms_median": 39.65059999973164,
+        "latency_ms_p90": 41.84566000003542,
+        "throughput_img_s": 3335.160375876467
+      }
+    },
+    {
+      "model": "resnet20_gn",
+      "label": "R20-GN",
+      "params": 272474,
+      "macs": 40813184,
+      "flops": 81626368,
+      "params_m": 0.2725,
+      "macs_m": 40.8132,
+      "size_mb": 1.09,
+      "latency_b1": {
+        "batch_size": 1,
+        "samples": 50,
+        "latency_ms_mean": 2.247438000049442,
+        "latency_ms_median": 2.1929499998805113,
+        "latency_ms_p90": 2.8630500002691406,
+        "throughput_img_s": 444.95109541531315
+      },
+      "latency_b128": {
+        "batch_size": 128,
+        "samples": 25,
+        "latency_ms_mean": 43.73929599969415,
+        "latency_ms_median": 43.27269999885175,
+        "latency_ms_p90": 46.40389999913168,
+        "throughput_img_s": 2926.430274526939
+      }
+    },
+    {
+      "model": "resnet20_ds_se",
+      "label": "R20-DS-SE",
+      "params": 45130,
+      "macs": 6658816,
+      "flops": 13317632,
+      "params_m": 0.0451,
+      "macs_m": 6.6588,
+      "size_mb": 0.181,
+      "latency_b1": {
+        "batch_size": 1,
+        "samples": 50,
+        "latency_ms_mean": 4.201245999938692,
+        "latency_ms_median": 3.8761499999964144,
+        "latency_ms_p90": 5.291459998807113,
+        "throughput_img_s": 238.02462412688828
+      },
+      "latency_b128": {
+        "batch_size": 128,
+        "samples": 25,
+        "latency_ms_mean": 25.806895999921835,
+        "latency_ms_median": 25.735499999427702,
+        "latency_ms_p90": 29.481999999188705,
+        "throughput_img_s": 4959.914590285778
+      }
+    }
+  ]
+}

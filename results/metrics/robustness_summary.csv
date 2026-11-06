@@ -1,0 +1,7 @@
+model,label,clean_accuracy,mean_corruption_accuracy,worst_case_accuracy,mean_drop,relative_drop_pct
+resnet20,R20 (baseline),0.8854,0.574792,0.154,0.310608,35.08
+resnet20_ds,R20-DS,0.8668,0.53934,0.1305,0.32746,37.78
+resnet20_ds_se,R20-DS-SE,0.8645,0.541096,0.1406,0.323404,37.41
+resnet20_gelu,R20-GELU,0.8934,0.591852,0.1779,0.301548,33.75
+resnet20_gn,R20-GN,0.8576,0.65628,0.2984,0.20132,23.47
+resnet20_se,R20-SE,0.8907,0.593236,0.1703,0.297464,33.4

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CIFAR-10 低能见度识别演示</title>
+  <style>
+    :root { --ink:#17202a; --muted:#667085; --line:#e4e7ec; --brand:#0f766e; --bg:#f6f8f9; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+    header { background:linear-gradient(120deg,#0f766e,#134e4a); color:#fff; padding:28px 0 24px; }
+    .wrap { width:min(1080px,92vw); margin:0 auto; }
+    h1 { margin:0 0 6px; font-size:26px; letter-spacing:.5px; }
+    header p { margin:0; opacity:.86; font-size:14px; }
+    .grid { display:grid; grid-template-columns: 420px 1fr; gap:22px; margin:24px auto 40px; }
+    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+    .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; box-shadow:0 3px 14px rgba(16,24,40,.04); }
+    .card h2 { font-size:16px; margin:0 0 14px; }
+    label { display:block; font-size:13px; color:var(--muted); margin:13px 0 6px; }
+    input[type=file] { width:100%; padding:11px; border:1px dashed #b8c2cc; border-radius:10px; background:#fbfcfd; }
+    select { width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:9px; background:#fff; font-size:14px; }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    button { width:100%; margin-top:18px; padding:11px; border:0; border-radius:10px; background:var(--brand); color:#fff; font-size:15px; cursor:pointer; }
+    button:disabled { opacity:.6; cursor:wait; }
+    .hint { font-size:12px; color:var(--muted); line-height:1.7; margin-top:12px; }
+    .preview { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .preview figure { margin:0; text-align:center; }
+    .preview img { width:100%; max-width:200px; border-radius:10px; image-rendering:pixelated; border:1px solid var(--line); }
+    .preview figcaption { font-size:12px; color:var(--muted); margin-top:6px; }
+    .empty { color:var(--muted); font-size:14px; padding:26px 0; text-align:center; }
+    .pred { font-size:25px; font-weight:700; margin:2px 0 2px; }
+    .sub { color:var(--muted); font-size:13px; }
+    .bar { height:9px; background:#eef2f4; border-radius:99px; overflow:hidden; margin:5px 0 12px; }
+    .bar > i { display:block; height:100%; background:linear-gradient(90deg,#0f766e,#2dd4bf); border-radius:99px; }
+    .top3 { margin-top:14px; }
+    .top3 .line { display:flex; justify-content:space-between; font-size:13px; margin-bottom:2px; }
+    .tag { display:inline-block; font-size:12px; color:#0f766e; background:#e6fffb; border:1px solid #b5f5ec; padding:2px 8px; border-radius:99px; }
+    .err { color:#b42318; background:#fef3f2; border:1px solid #fecdca; padding:10px 12px; border-radius:9px; font-size:13px; }
+    footer { color:var(--muted); font-size:12px; text-align:center; padding:0 0 26px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>CIFAR-10 低能见度场景识别演示</h1>
+    <p>ResNet-20 结构对比实验 · 深度可分离卷积 / SE 注意力 / 退化鲁棒性</p>
+  </div>
+</header>
+
+<main class="wrap grid">
+  <section class="card">
+    <h2>① 输入与场景设置</h2>
+    <form id="form">
+      <label>上传图片（自动中心裁剪为 32×32）</label>
+      <input type="file" name="image" accept="image/png,image/jpeg,image/webp" required>
+      <div class="row">
+        <div>
+          <label>模型</label>
+          <select name="model">
+            {% for key, label in labels.items() %}
+            <option value="{{ key }}" {% if key == 'resnet20_ds_se' %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <label>模拟退化</label>
+          <select name="corruption">
+            <option value="none">无（清晰图像）</option>
+            {% for c in corruptions %}
+            <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <label>退化强度（1–5）</label>
+      <select name="severity">
+        <option value="1">1 · 轻微</option>
+        <option value="2">2</option>
+        <option value="3" selected>3 · 中等</option>
+        <option value="4">4</option>
+        <option value="5">5 · 严重</option>
+      </select>
+      <button id="btn" type="submit">开始识别</button>
+    </form>
+    <div class="hint">
+      建议上传 32×32 的 CIFAR-10 测试图片，或任意正方形物体照片。<br>
+      退化选项用于模拟雾天、低照度、运动模糊、传感器噪声与 JPEG 压缩。
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>② 识别结果</h2>
+    <div id="empty" class="empty">上传图片并点击“开始识别”后，这里会显示 Top-3 预测与 Grad-CAM。</div>
+    <div id="error" class="err" style="display:none"></div>
+    <div id="result" style="display:none">
+      <div id="meta" class="sub"></div>
+      <div class="pred" id="pred-name"></div>
+      <div class="sub" id="pred-prob"></div>
+      <div class="top3" id="top3"></div>
+      <div class="preview" style="margin-top:18px">
+        <figure><img id="input-img" alt="input"><figcaption>网络输入（32×32 放大）</figcaption></figure>
+        <figure><img id="cam-img" alt="grad-cam"><figcaption>Grad-CAM（最后 stage）</figcaption></figure>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>课程设计演示 · 所有推理在本地 CPU 完成 · 结果仅用于教学实验</footer>
+
+<script>
+const form = document.getElementById('form');
+const btn = document.getElementById('btn');
+const errBox = document.getElementById('error');
+const result = document.getElementById('result');
+const empty = document.getElementById('empty');
+const params = new URLSearchParams(window.location.search);
+
+function render(data) {
+  document.getElementById('meta').textContent =
+    `${data.model_label} · 退化：${data.corruption === 'none' ? '无' : data.corruption + ' (severity ' + data.severity + ')'}`;
+  document.getElementById('pred-name').textContent = `${data.prediction.name_zh} (${data.prediction.name})`;
+  document.getElementById('pred-prob').textContent = `置信度 ${(data.prediction.prob * 100).toFixed(2)}%`;
+  document.getElementById('top3').innerHTML = data.top3.map((t, i) => `
+    <div class="line"><span>${i + 1}. ${t.name_zh} <span class="sub">${t.name}</span></span><span>${(t.prob * 100).toFixed(2)}%</span></div>
+    <div class="bar"><i style="width:${Math.max(1, t.prob * 100)}%"></i></div>`).join('');
+  document.getElementById('input-img').src = data.input_image;
+  document.getElementById('cam-img').src = data.cam_image;
+  result.style.display = 'block';
+}
+
+async function predict(payload) {
+  errBox.style.display = 'none';
+  result.style.display = 'none';
+  empty.style.display = 'none';
+  btn.disabled = true; btn.textContent = '推理中…';
+  try {
+    const res = await fetch('/predict', { method: 'POST', body: payload });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || '请求失败');
+    render(data);
+  } catch (err) {
+    errBox.textContent = err.message;
+    errBox.style.display = 'block';
+    empty.style.display = 'block';
+  } finally {
+    btn.disabled = false; btn.textContent = '开始识别';
+  }
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  predict(new FormData(form));
+});
+
+if (params.get('demo') === '1') {
+  const modelName = params.get('model') || 'resnet20';
+  const corruption = params.get('corruption') || 'fog';
+  const severity = params.get('severity') || '3';
+  form.elements['model'].value = modelName;
+  form.elements['corruption'].value = corruption;
+  form.elements['severity'].value = severity;
+  fetch('/sample/0')
+    .then((r) => r.blob())
+    .then((blob) => {
+      const file = new File([blob], 'sample_0.png', { type: 'image/png' });
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      form.elements['image'].files = dt.files;
+      const fd = new FormData();
+      fd.append('image', file);
+      fd.append('model', modelName);
+      fd.append('corruption', corruption);
+      fd.append('severity', severity);
+      return predict(fd);
+    })
+    .catch((err) => {
+      empty.textContent = '示例加载失败：' + err.message;
+    });
+}
+</script>
+</body>
+</html>

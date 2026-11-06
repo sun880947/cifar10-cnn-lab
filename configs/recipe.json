@@ -1,0 +1,39 @@
+{
+  "dataset": "CIFAR-10",
+  "split": {
+    "source_train_images": 50000,
+    "train_images": 45000,
+    "validation_images": 5000,
+    "test_images": 10000,
+    "validation_strategy": "stratified, 500 per class, seed 42"
+  },
+  "preprocessing": {
+    "mean": [0.4914, 0.4822, 0.4465],
+    "std": [0.2470, 0.2435, 0.2616],
+    "augmentation": "zero-pad 4 + random 32x32 crop + random horizontal flip + cutout 8"
+  },
+  "optimizer": {
+    "name": "SGD",
+    "momentum": 0.9,
+    "nesterov": true,
+    "base_lr": 0.1,
+    "min_lr": 0.0001,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 5,
+    "schedule": "linear warmup + cosine decay"
+  },
+  "training": {
+    "epochs": 60,
+    "batch_size": 256,
+    "label_smoothing": 0.1,
+    "cutout_size": 8,
+    "seed": 42,
+    "threads": 16,
+    "precision": "float32 CPU",
+    "channels_last": true
+  },
+  "evaluation": {
+    "batch_size": 512,
+    "metrics": ["accuracy", "top5_accuracy", "nll", "macro_f1", "ece", "confusion_matrix", "per_class"]
+  }
+}

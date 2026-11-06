@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Large generated artifacts (downloadable / reproducible)
+data/*.npz
+data/cifar10_parquet/
+checkpoints/*.pt
+!checkpoints/*_best.pt
+results/logs/*.log
+demo/static/results/*.png
+
+# Local OS clutter
+Thumbs.db
+.DS_Store
+
+# Submission archive and temporary renders
+cifar10-cnn-lab-submission.zip
+report/_*.png

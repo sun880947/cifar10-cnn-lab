@@ -1,0 +1,157 @@
+model,label,corruption,severity,accuracy
+resnet20,R20 (baseline),clean,0,0.8854
+resnet20_ds,R20-DS,clean,0,0.8668
+resnet20_ds_se,R20-DS-SE,clean,0,0.8645
+resnet20_gelu,R20-GELU,clean,0,0.8934
+resnet20_gn,R20-GN,clean,0,0.8576
+resnet20_se,R20-SE,clean,0,0.8907
+resnet20,R20 (baseline),fog,1,0.8724
+resnet20_ds,R20-DS,fog,1,0.8514
+resnet20_ds_se,R20-DS-SE,fog,1,0.8491
+resnet20_gelu,R20-GELU,fog,1,0.8832
+resnet20_gn,R20-GN,fog,1,0.8566
+resnet20_se,R20-SE,fog,1,0.8781
+resnet20,R20 (baseline),fog,2,0.8525
+resnet20_ds,R20-DS,fog,2,0.8256
+resnet20_ds_se,R20-DS-SE,fog,2,0.8137
+resnet20_gelu,R20-GELU,fog,2,0.8611
+resnet20_gn,R20-GN,fog,2,0.8513
+resnet20_se,R20-SE,fog,2,0.8515
+resnet20,R20 (baseline),fog,3,0.817
+resnet20_ds,R20-DS,fog,3,0.7735
+resnet20_ds_se,R20-DS-SE,fog,3,0.7591
+resnet20_gelu,R20-GELU,fog,3,0.8256
+resnet20_gn,R20-GN,fog,3,0.8413
+resnet20_se,R20-SE,fog,3,0.8071
+resnet20,R20 (baseline),fog,4,0.75
+resnet20_ds,R20-DS,fog,4,0.6841
+resnet20_ds_se,R20-DS-SE,fog,4,0.6554
+resnet20_gelu,R20-GELU,fog,4,0.7519
+resnet20_gn,R20-GN,fog,4,0.8215
+resnet20_se,R20-SE,fog,4,0.7238
+resnet20,R20 (baseline),fog,5,0.6255
+resnet20_ds,R20-DS,fog,5,0.5475
+resnet20_ds_se,R20-DS-SE,fog,5,0.4906
+resnet20_gelu,R20-GELU,fog,5,0.6176
+resnet20_gn,R20-GN,fog,5,0.7897
+resnet20_se,R20-SE,fog,5,0.58
+resnet20,R20 (baseline),low_light,1,0.8654
+resnet20_ds,R20-DS,low_light,1,0.8411
+resnet20_ds_se,R20-DS-SE,low_light,1,0.8333
+resnet20_gelu,R20-GELU,low_light,1,0.8757
+resnet20_gn,R20-GN,low_light,1,0.8348
+resnet20_se,R20-SE,low_light,1,0.869
+resnet20,R20 (baseline),low_light,2,0.8167
+resnet20_ds,R20-DS,low_light,2,0.7814
+resnet20_ds_se,R20-DS-SE,low_light,2,0.775
+resnet20_gelu,R20-GELU,low_light,2,0.8302
+resnet20_gn,R20-GN,low_light,2,0.8015
+resnet20_se,R20-SE,low_light,2,0.8214
+resnet20,R20 (baseline),low_light,3,0.7384
+resnet20_ds,R20-DS,low_light,3,0.6799
+resnet20_ds_se,R20-DS-SE,low_light,3,0.6691
+resnet20_gelu,R20-GELU,low_light,3,0.7492
+resnet20_gn,R20-GN,low_light,3,0.744
+resnet20_se,R20-SE,low_light,3,0.7567
+resnet20,R20 (baseline),low_light,4,0.6431
+resnet20_ds,R20-DS,low_light,4,0.5703
+resnet20_ds_se,R20-DS-SE,low_light,4,0.5578
+resnet20_gelu,R20-GELU,low_light,4,0.6448
+resnet20_gn,R20-GN,low_light,4,0.6753
+resnet20_se,R20-SE,low_light,4,0.6711
+resnet20,R20 (baseline),low_light,5,0.5349
+resnet20_ds,R20-DS,low_light,5,0.4446
+resnet20_ds_se,R20-DS-SE,low_light,5,0.4324
+resnet20_gelu,R20-GELU,low_light,5,0.5298
+resnet20_gn,R20-GN,low_light,5,0.6075
+resnet20_se,R20-SE,low_light,5,0.5778
+resnet20,R20 (baseline),motion_blur,1,0.5977
+resnet20_ds,R20-DS,motion_blur,1,0.566
+resnet20_ds_se,R20-DS-SE,motion_blur,1,0.5725
+resnet20_gelu,R20-GELU,motion_blur,1,0.6125
+resnet20_gn,R20-GN,motion_blur,1,0.7197
+resnet20_se,R20-SE,motion_blur,1,0.6115
+resnet20,R20 (baseline),motion_blur,2,0.4747
+resnet20_ds,R20-DS,motion_blur,2,0.4577
+resnet20_ds_se,R20-DS-SE,motion_blur,2,0.4664
+resnet20_gelu,R20-GELU,motion_blur,2,0.489
+resnet20_gn,R20-GN,motion_blur,2,0.656
+resnet20_se,R20-SE,motion_blur,2,0.4804
+resnet20,R20 (baseline),motion_blur,3,0.2721
+resnet20_ds,R20-DS,motion_blur,3,0.2853
+resnet20_ds_se,R20-DS-SE,motion_blur,3,0.2851
+resnet20_gelu,R20-GELU,motion_blur,3,0.2932
+resnet20_gn,R20-GN,motion_blur,3,0.4669
+resnet20_se,R20-SE,motion_blur,3,0.2703
+resnet20,R20 (baseline),motion_blur,4,0.1913
+resnet20_ds,R20-DS,motion_blur,4,0.224
+resnet20_ds_se,R20-DS-SE,motion_blur,4,0.2106
+resnet20_gelu,R20-GELU,motion_blur,4,0.2317
+resnet20_gn,R20-GN,motion_blur,4,0.3601
+resnet20_se,R20-SE,motion_blur,4,0.1955
+resnet20,R20 (baseline),motion_blur,5,0.1576
+resnet20_ds,R20-DS,motion_blur,5,0.1964
+resnet20_ds_se,R20-DS-SE,motion_blur,5,0.1801
+resnet20_gelu,R20-GELU,motion_blur,5,0.2043
+resnet20_gn,R20-GN,motion_blur,5,0.2984
+resnet20_se,R20-SE,motion_blur,5,0.1703
+resnet20,R20 (baseline),gaussian_noise,1,0.8121
+resnet20_ds,R20-DS,gaussian_noise,1,0.7832
+resnet20_ds_se,R20-DS-SE,gaussian_noise,1,0.7782
+resnet20_gelu,R20-GELU,gaussian_noise,1,0.8329
+resnet20_gn,R20-GN,gaussian_noise,1,0.8123
+resnet20_se,R20-SE,gaussian_noise,1,0.8271
+resnet20,R20 (baseline),gaussian_noise,2,0.5907
+resnet20_ds,R20-DS,gaussian_noise,2,0.4776
+resnet20_ds_se,R20-DS-SE,gaussian_noise,2,0.5305
+resnet20_gelu,R20-GELU,gaussian_noise,2,0.6109
+resnet20_gn,R20-GN,gaussian_noise,2,0.7109
+resnet20_se,R20-SE,gaussian_noise,2,0.6557
+resnet20,R20 (baseline),gaussian_noise,3,0.3637
+resnet20_ds,R20-DS,gaussian_noise,3,0.2479
+resnet20_ds_se,R20-DS-SE,gaussian_noise,3,0.309
+resnet20_gelu,R20-GELU,gaussian_noise,3,0.377
+resnet20_gn,R20-GN,gaussian_noise,3,0.5749
+resnet20_se,R20-SE,gaussian_noise,3,0.4668
+resnet20,R20 (baseline),gaussian_noise,4,0.2233
+resnet20_ds,R20-DS,gaussian_noise,4,0.1631
+resnet20_ds_se,R20-DS-SE,gaussian_noise,4,0.1964
+resnet20_gelu,R20-GELU,gaussian_noise,4,0.2437
+resnet20_gn,R20-GN,gaussian_noise,4,0.4569
+resnet20_se,R20-SE,gaussian_noise,4,0.3369
+resnet20,R20 (baseline),gaussian_noise,5,0.154
+resnet20_ds,R20-DS,gaussian_noise,5,0.1305
+resnet20_ds_se,R20-DS-SE,gaussian_noise,5,0.1406
+resnet20_gelu,R20-GELU,gaussian_noise,5,0.1779
+resnet20_gn,R20-GN,gaussian_noise,5,0.3537
+resnet20_se,R20-SE,gaussian_noise,5,0.2486
+resnet20,R20 (baseline),jpeg,1,0.7038
+resnet20_ds,R20-DS,jpeg,1,0.6805
+resnet20_ds_se,R20-DS-SE,jpeg,1,0.695
+resnet20_gelu,R20-GELU,jpeg,1,0.7263
+resnet20_gn,R20-GN,jpeg,1,0.7125
+resnet20_se,R20-SE,jpeg,1,0.7111
+resnet20,R20 (baseline),jpeg,2,0.6727
+resnet20_ds,R20-DS,jpeg,2,0.6545
+resnet20_ds_se,R20-DS-SE,jpeg,2,0.6651
+resnet20_gelu,R20-GELU,jpeg,2,0.698
+resnet20_gn,R20-GN,jpeg,2,0.6925
+resnet20_se,R20-SE,jpeg,2,0.6849
+resnet20,R20 (baseline),jpeg,3,0.6249
+resnet20_ds,R20-DS,jpeg,3,0.6081
+resnet20_ds_se,R20-DS-SE,jpeg,3,0.6278
+resnet20_gelu,R20-GELU,jpeg,3,0.6591
+resnet20_gn,R20-GN,jpeg,3,0.6579
+resnet20_se,R20-SE,jpeg,3,0.6378
+resnet20,R20 (baseline),jpeg,4,0.5656
+resnet20_ds,R20-DS,jpeg,4,0.5598
+resnet20_ds_se,R20-DS-SE,jpeg,4,0.5705
+resnet20_gelu,R20-GELU,jpeg,4,0.5932
+resnet20_gn,R20-GN,jpeg,4,0.6119
+resnet20_se,R20-SE,jpeg,4,0.5668
+resnet20,R20 (baseline),jpeg,5,0.4497
+resnet20_ds,R20-DS,jpeg,5,0.4495
+resnet20_ds_se,R20-DS-SE,jpeg,5,0.4641
+resnet20_gelu,R20-GELU,jpeg,5,0.4775
+resnet20_gn,R20-GN,jpeg,5,0.4989
+resnet20_se,R20-SE,jpeg,5,0.4307

@@ -1,0 +1,244 @@
+{
+  "model": "resnet20",
+  "label": "resnet20",
+  "spec": {
+    "depth": 20,
+    "width": 16,
+    "norm": "bn",
+    "act": "relu",
+    "use_se": false,
+    "use_ds": false
+  },
+  "params": 272474,
+  "macs": 40813184,
+  "flops": 81626368,
+  "epochs": 60,
+  "best_epoch": 60,
+  "best_val_accuracy": 0.884,
+  "test": {
+    "accuracy": 0.889,
+    "top5_accuracy": 0.995,
+    "nll": 0.35,
+    "macro_f1": 0.88,
+    "ece": 0.02,
+    "num_samples": 10000.0,
+    "confusion_matrix": [
+      [
+        0,
+        924,
+        0,
+        0,
+        76,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        997,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        912,
+        0,
+        0,
+        88,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        980,
+        0,
+        0,
+        20,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        917,
+        0,
+        0,
+        83,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        984,
+        0,
+        0,
+        16,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        981,
+        0,
+        0,
+        19,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        996,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        943,
+        0,
+        0,
+        57,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        999,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "per_class": [
+      {
+        "class_id": 0,
+        "support": 1000,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_id": 1,
+        "support": 1000,
+        "precision": 0.10349839094778367,
+        "recall": 0.997,
+        "f1": 0.18752938963603877
+      },
+      {
+        "class_id": 2,
+        "support": 1000,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_id": 3,
+        "support": 1000,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_id": 4,
+        "support": 1000,
+        "precision": 0.22615803814713897,
+        "recall": 0.083,
+        "f1": 0.12143379663496709
+      },
+      {
+        "class_id": 5,
+        "support": 1000,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_id": 6,
+        "support": 1000,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_id": 7,
+        "support": 1000,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_id": 8,
+        "support": 1000,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "class_id": 9,
+        "support": 1000,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    ],
+    "loss": 2.297964733886719
+  },
+  "train_seconds": 4.92,
+  "args": {
+    "model": "resnet20",
+    "data_dir": "data",
+    "results_dir": "results",
+    "checkpoint_dir": "checkpoints",
+    "epochs": 1,
+    "batch_size": 256,
+    "lr": 0.1,
+    "min_lr": 0.0001,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 5,
+    "label_smoothing": 0.1,
+    "cutout": 0,
+    "threads": 8,
+    "seed": 42,
+    "val_ratio": 0.1,
+    "resume": false,
+    "max_train_batches": 10,
+    "max_val_samples": 500,
+    "tag": "smoke"
+  },
+  "finished_at": "2026-11-04T23:21:19"
+}
