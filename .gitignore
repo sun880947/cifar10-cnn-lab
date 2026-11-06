@@ -19,3 +19,4 @@ Thumbs.db
 # Submission archive and temporary renders
 cifar10-cnn-lab-submission.zip
 report/_*.png
+_layout_test/
